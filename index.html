@@ -315,26 +315,323 @@ nav{
 .gold-divider{height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:0.25;margin:0 1.4rem;}
 
 @media print {
-  nav, .scroll-hint, #three-canvas, .hero-overlay { display: none !important; }
-  body { max-width: 100%; background: #fff; color: #000; }
-  #hero { height: auto; min-height: unset; background: #fff; padding: 3rem 1.4rem 2rem; }
-  .hero-body { justify-content: center; }
-  .hero-photo-wrap { width: 180px; height: 180px; margin-bottom: 1.2rem; }
-  .hero-badge, .hero-stats { display: none; }
-  .hero-name { color: #141210; font-size: 36px; }
-  .hero-role { color: #6B6158; }
-  section, .section { background: #fff !important; page-break-inside: avoid; }
-  #skills, #software { background: #fff !important; }
-  .skill-card, .sw-card { border-color: #ddd !important; background: #fafafa !important; }
-  .skill-name, .skill-icon, .sw-name { color: #333 !important; }
-  .sec-title { color: #141210 !important; }
-  .tl-item { page-break-inside: avoid; }
-  #footer { background: #fff !important; }
-  .footer-name, .footer-role, .footer-loc, .footer-copy { color: #333 !important; }
-  .footer-cta.primary { background: #C8A882 !important; color: #fff !important; }
-  .footer-cta.secondary { display: none; }
-  .footer-photo { display: none; }
-  .gold-divider { background: #C8A882; }
+  /* Setup page size and tight margins to maximize space */
+  @page {
+    size: A4 portrait;
+    margin: 5mm 8mm 5mm 8mm;
+  }
+  
+  /* Hide interactive, decoration, and duplicate components */
+  nav, .scroll-hint, #three-canvas, .hero-overlay, .gold-divider, .hero-badge, .hero-stats, #footer { 
+    display: none !important; 
+  }
+  
+  /* Layout Body as a two-column grid below a full-width header */
+  body { 
+    display: grid !important;
+    grid-template-columns: 210px 1fr !important;
+    grid-template-rows: auto 1fr !important;
+    column-gap: 15px !important;
+    row-gap: 8px !important;
+    max-width: 100% !important; 
+    background: #fff !important; 
+    color: #111 !important; 
+    font-size: 8px !important;
+    line-height: 1.2 !important;
+    font-family: var(--mont), sans-serif !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Sections setup */
+  section, .section { 
+    background: #fff !important; 
+    padding: 0 !important;
+    margin: 0 !important;
+    page-break-inside: avoid !important;
+  }
+
+  /* Assign grid areas */
+  #hero { 
+    grid-column: 1 / span 2 !important; 
+    grid-row: 1 !important;
+    border-bottom: 1.5px solid #C8A882 !important;
+    padding-bottom: 6px !important;
+    margin-bottom: 4px !important;
+    min-height: unset !important;
+    height: auto !important;
+  }
+  
+  #about, #skills, #software, #education {
+    grid-column: 1 !important;
+  }
+  
+  /* Add vertical spacing between left column sections */
+  #about { margin-bottom: 6px !important; }
+  #skills { margin-bottom: 6px !important; }
+  #software { margin-bottom: 6px !important; }
+  #education { margin-bottom: 0 !important; }
+
+  /* Experience section in right column */
+  #experience { 
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+  }
+
+  /* Header styling in print: row layout with small image on left, title on right */
+  .hero-body {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    text-align: left !important;
+  }
+  .hero-photo-wrap {
+    width: 60px !important;
+    height: 60px !important;
+    margin: 0 !important;
+    border: 1.5px solid #C8A882 !important;
+  }
+  .hero-photo-wrap img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+  .hero-name { 
+    color: #141210 !important; 
+    font-size: 18px !important; 
+    line-height: 1.1 !important;
+    margin: 0 0 2px 0 !important;
+  }
+  .hero-role { 
+    color: #6B6158 !important; 
+    font-size: 9px !important;
+    font-weight: 500 !important;
+    margin: 0 !important;
+  }
+
+  /* Hide eyebrows in print to save space */
+  .sec-eyebrow {
+    display: none !important;
+  }
+
+  /* Compact section titles into professional single-line headers */
+  .sec-title { 
+    color: #141210 !important; 
+    font-size: 10px !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    margin: 0 0 4px 0 !important;
+    border-bottom: 1px solid #C8A882 !important;
+    padding-bottom: 2px !important;
+  }
+  .sec-title em {
+    font-style: normal !important;
+  }
+  .sec-title br {
+    display: none !important;
+  }
+
+  /* About Me styles */
+  .about-card {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin-bottom: 3px !important;
+  }
+  .about-card p {
+    font-size: 7.5px !important;
+    line-height: 1.2 !important;
+    margin: 0 !important;
+    color: #333 !important;
+  }
+
+  /* Stack contact chips vertically as a resume sidebar section */
+  .contact-chips {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+    margin-top: 4px !important;
+  }
+  .contact-chips .chip {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    font-size: 7.5px !important;
+    color: #333 !important;
+    gap: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .contact-chips .chip i {
+    color: #C8A882 !important;
+    width: 8px !important;
+    text-align: center !important;
+  }
+
+  /* Skills list - remove descriptions and make cards inline badges */
+  .skills-bento {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+  }
+  .skill-card { 
+    border: 1px solid #eee !important; 
+    background: #fafafa !important; 
+    padding: 2.5px 5px !important;
+    border-radius: 4px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+    margin: 0 !important;
+  }
+  .skill-icon {
+    font-size: 8px !important;
+    color: #C8A882 !important;
+    margin: 0 !important;
+  }
+  .skill-name { 
+    color: #333 !important; 
+    font-size: 7.5px !important;
+    font-weight: 600 !important;
+  }
+  .skill-desc {
+    display: none !important;
+  }
+
+  /* Software Tools styling */
+  .sw-grid {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 3px !important;
+  }
+  .sw-card { 
+    border: 1px solid #eee !important; 
+    background: #fafafa !important; 
+    padding: 2px 4px !important;
+    border-radius: 3px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 3px !important;
+    margin: 0 !important;
+  }
+  .sw-card i {
+    font-size: 8px !important;
+    color: #C8A882 !important;
+    margin: 0 !important;
+  }
+  .sw-name { 
+    color: #333 !important; 
+    font-size: 7.5px !important;
+    font-weight: 500 !important;
+  }
+
+  /* Education section */
+  .edu-cards {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  .edu-card {
+    display: flex !important;
+    align-items: flex-start !important;
+    gap: 5px !important;
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  .edu-icon {
+    font-size: 8px !important;
+    color: #C8A882 !important;
+    width: auto !important;
+    height: auto !important;
+    background: none !important;
+    margin-top: 1px !important;
+  }
+  .edu-degree {
+    font-size: 7.5px !important;
+    font-weight: 600 !important;
+    color: #222 !important;
+  }
+  .edu-school, .edu-year {
+    font-size: 7px !important;
+    color: #666 !important;
+  }
+
+  /* Experience section (Timeline) */
+  .timeline {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+    padding-left: 8px !important;
+    border-left: 1px solid #eee !important;
+    margin-left: 4px !important;
+  }
+  .tl-item { 
+    position: relative !important;
+    padding: 0 0 5px 0 !important;
+    margin: 0 !important;
+    page-break-inside: avoid !important;
+  }
+  .tl-dot {
+    width: 5px !important;
+    height: 5px !important;
+    left: -11px !important;
+    top: 3px !important;
+    background: #ccc !important;
+    border: 1px solid #fff !important;
+  }
+  .tl-dot.active {
+    background: #C8A882 !important;
+  }
+  .tl-meta {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 1px !important;
+  }
+  .tl-company {
+    font-size: 8.5px !important;
+    font-weight: 700 !important;
+    color: #141210 !important;
+  }
+  .tl-date {
+    font-size: 7px !important;
+    color: #666 !important;
+  }
+  .tl-role {
+    font-size: 8px !important;
+    font-weight: 600 !important;
+    color: #C8A882 !important;
+    margin-bottom: 1px !important;
+  }
+  .tl-desc {
+    font-size: 7.5px !important;
+    line-height: 1.15 !important;
+    color: #333 !important;
+    margin-bottom: 2px !important;
+  }
+  .tags {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 2px !important;
+  }
+  .tag {
+    font-size: 6px !important;
+    padding: 0.5px 3px !important;
+    border-radius: 2px !important;
+    background: #f5f5f5 !important;
+    border: none !important;
+    color: #555 !important;
+  }
+  .tag.hot {
+    background: #C8A882 !important;
+    color: #fff !important;
+  }
 }
 </style>
 </head>
