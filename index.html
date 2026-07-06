@@ -398,21 +398,21 @@ nav{
   #software { margin-bottom: 15px !important; }
   #education { margin-bottom: 0 !important; }
 
-  /* Header styling in print: row layout with small image on left, title on right */
+  /* Header styling in print: centered stacked layout with 85px image */
   .hero-body {
     display: flex !important;
-    flex-direction: row !important;
+    flex-direction: column !important;
     align-items: center !important;
-    justify-content: flex-start !important;
-    gap: 15px !important;
+    justify-content: center !important;
+    gap: 6px !important;
     padding: 0 !important;
     margin: 0 !important;
-    text-align: left !important;
+    text-align: center !important;
   }
   .hero-photo-wrap {
-    width: 70px !important;
-    height: 70px !important;
-    margin: 0 !important;
+    width: 85px !important;
+    height: 85px !important;
+    margin: 0 auto !important;
     border: 2px solid #C8A882 !important;
   }
   .hero-photo-wrap img {
@@ -424,13 +424,22 @@ nav{
     color: #141210 !important; 
     font-size: 22px !important; 
     line-height: 1.1 !important;
-    margin: 0 0 2px 0 !important;
+    margin: 4px 0 2px 0 !important;
+  }
+  .hero-name br {
+    display: none !important;
+  }
+  .hero-name strong::before {
+    content: ' ' !important;
+    display: inline !important;
   }
   .hero-role { 
     color: #6B6158 !important; 
     font-size: 10.5px !important;
     font-weight: 500 !important;
     margin: 0 !important;
+    letter-spacing: 0.5px !important;
+    text-transform: uppercase !important;
   }
 
   /* Hide eyebrows in print to save space */
@@ -448,6 +457,9 @@ nav{
     margin: 0 0 6px 0 !important;
     border-bottom: 1.5px solid #C8A882 !important;
     padding-bottom: 2px !important;
+  }
+  #about .sec-title {
+    text-align: center !important;
   }
   .sec-title em {
     font-style: normal !important;
