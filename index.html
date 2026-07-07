@@ -419,8 +419,9 @@ nav{
     width: 170px !important;
     height: 170px !important;
     min-width: 170px !important;
-    border-radius: 50% !important;
+    border-radius: 0 !important;
     border: none !important;
+    box-shadow: none !important;
     overflow: hidden !important;
     margin: 0 !important;
     position: relative !important;
@@ -661,7 +662,7 @@ nav{
   .tl-role {
     font-size: 10.5px !important;
     font-weight: 600 !important;
-    color: #444 !important;
+    color: #111 !important;
     margin-bottom: 4px !important;
     font-style: italic !important;
   }
@@ -679,7 +680,7 @@ nav{
   .tl-desc li {
     font-size: 10px !important;
     line-height: 1.35 !important;
-    color: #333 !important;
+    color: #111 !important;
     margin-bottom: 3px !important;
   }
 }
@@ -723,7 +724,7 @@ nav{
         </a>
         <div class="chip">
           <i class="fa-solid fa-location-dot"></i>
-          <span>Delhi</span>
+          <span>Jaipur</span>
         </div>
       </div>
     </div>
@@ -1046,7 +1047,7 @@ nav{
     <div class="edu-card reveal">
       <div class="edu-icon"><i class="fa-solid fa-graduation-cap"></i></div>
       <div>
-        <div class="edu-degree">B.Des — Textile &amp; Apparel Design</div>
+        <div class="edu-degree">B.Des — Textile &amp; Apparel Design, 9.4 SGPA</div>
         <div class="edu-school">NIFT Kolkata</div>
         <div class="edu-year">2019 – 2023</div>
       </div>
@@ -1191,7 +1192,7 @@ function exportHTMLToWord() {
   const role = "Fashion Designer";
   const phone = "9306323338";
   const email = "lizaworking501@gmail.com";
-  const location = "Delhi";
+  const location = "Jaipur";
   
   const photoImg = document.querySelector('#hero img');
   const photoSrc = photoImg ? photoImg.src : '';
@@ -1289,7 +1290,7 @@ function exportHTMLToWord() {
       <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 12px; border-bottom: 2px solid #333333; padding-bottom: 12px;">
         <tr>
           <td width="150" style="vertical-align: middle;">
-            <img src="${photoSrc}" width="130" height="130" style="border-radius: 50%;" />
+            <img src="${photoSrc}" width="130" height="130" style="border-radius: 0;" />
           </td>
           <td style="vertical-align: middle; padding-left: 20px;">
             <div style="font-family: Arial, sans-serif; font-size: 24pt; font-weight: bold; color: #111111; text-transform: uppercase; line-height: 1.1; margin-bottom: 3px;">${name}</div>
