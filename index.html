@@ -1085,8 +1085,11 @@ nav{
     <a href="tel:9306323338" class="footer-cta secondary">
       <i class="fa-solid fa-phone"></i> +91 93063 23338
     </a>
-      <a href="javascript:window.print()" class="footer-cta secondary" style="border-color:rgba(200,168,130,0.25);">
-      <i class="fa-solid fa-file-arrow-down"></i> Download Portfolio PDF
+    <a href="javascript:window.print()" class="footer-cta secondary" style="border-color:rgba(200,168,130,0.25);">
+      <i class="fa-solid fa-file-pdf"></i> Download PDF
+    </a>
+    <a href="javascript:exportHTMLToWord()" class="footer-cta secondary" style="border-color:rgba(200,168,130,0.25);">
+      <i class="fa-solid fa-file-word"></i> Download Word (Doc)
     </a>
   </div>
   <div class="footer-loc reveal">
@@ -1181,6 +1184,176 @@ const io = new IntersectionObserver(entries=>{
   });
 },{threshold:0.1,rootMargin:'0px 0px -30px 0px'});
 document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* EXPORT PORTFOLIO TO WORD (.DOC) */
+function exportHTMLToWord() {
+  const name = "LIZA KUKREJA";
+  const role = "Fashion Designer";
+  const phone = "9306323338";
+  const email = "lizaworking501@gmail.com";
+  const location = "Delhi";
+  
+  const photoImg = document.querySelector('#hero img');
+  const photoSrc = photoImg ? photoImg.src : '';
+  const aboutText = document.querySelector('#about .about-card p').innerHTML;
+  
+  let experienceHTML = '';
+  const tlItems = document.querySelectorAll('#experience .tl-item');
+  tlItems.forEach(item => {
+    const company = item.querySelector('.tl-company').innerText;
+    const date = item.querySelector('.tl-date').innerText;
+    const role = item.querySelector('.tl-role').innerText;
+    const descUl = item.querySelector('.tl-desc ul');
+    const descHTML = descUl ? descUl.innerHTML : '';
+    experienceHTML += `
+      <div style="margin-bottom: 12px; page-break-inside: avoid;">
+        <table border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td style="font-family: Arial, sans-serif; font-size: 10.5pt; font-weight: bold; color: #111111;">${company}</td>
+            <td style="font-family: Arial, sans-serif; font-size: 9.5pt; font-weight: bold; color: #111111; text-align: right;">${date}</td>
+          </tr>
+        </table>
+        <div style="font-family: Arial, sans-serif; font-size: 9.5pt; color: #555555; font-style: italic; margin-bottom: 4px;">${role}</div>
+        <ul style="font-family: Arial, sans-serif; font-size: 9.5pt; color: #333333; margin: 0; padding-left: 15px;">
+          ${descHTML}
+        </ul>
+      </div>
+    `;
+  });
+  
+  let educationHTML = '';
+  const eduCards = document.querySelectorAll('#education .edu-card');
+  eduCards.forEach(card => {
+    const degree = card.querySelector('.edu-degree').innerText;
+    const school = card.querySelector('.edu-school').innerText;
+    const year = card.querySelector('.edu-year').innerText;
+    educationHTML += `
+      <div style="margin-bottom: 10px;">
+        <div style="font-family: Arial, sans-serif; font-size: 9.5pt; font-weight: bold; color: #111111;">${degree}</div>
+        <div style="font-family: Arial, sans-serif; font-size: 9pt; color: #444444;">${school}</div>
+        <div style="font-family: Arial, sans-serif; font-size: 8.5pt; color: #666666;">${year}</div>
+      </div>
+    `;
+  });
+
+  const skillsList = document.querySelector('#skills .skills-list');
+  const skillsHTML = skillsList ? skillsList.innerHTML : '';
+
+  let softwareHTML = '';
+  const swCards = document.querySelectorAll('#software .sw-card');
+  swCards.forEach(card => {
+    const name = card.querySelector('.sw-name').innerText;
+    softwareHTML += `<span style="font-family: Arial, sans-serif; font-size: 9pt; color: #333333; background: #fafafa; border: 1px solid #eeeeee; padding: 3px 6px; margin-right: 4px; margin-bottom: 4px; display: inline-block;">${name}</span>`;
+  });
+
+  const wordHTML = `
+    <html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+    <head>
+      <meta charset="utf-8">
+      <title>Liza Kukreja Resume</title>
+      <!--[if gte mso 9]>
+      <xml>
+        <w:WordDocument>
+          <w:View>Print</w:View>
+          <w:Zoom>100</w:Zoom>
+          <w:DoNotOptimizeForBrowser/>
+        </w:WordDocument>
+      </xml>
+      <![endif]-->
+      <style>
+        @page {
+          size: 21cm 29.7cm;
+          margin: 1.5cm 1.5cm 1.5cm 1.5cm;
+          mso-page-orientation: portrait;
+        }
+        body {
+          font-family: 'Arial', sans-serif;
+          font-size: 9.5pt;
+          line-height: 1.35;
+          color: #333333;
+          background-color: #ffffff;
+        }
+        h2 {
+          font-size: 11pt;
+          font-weight: bold;
+          color: #111111;
+          text-transform: uppercase;
+          border-bottom: 1.5px solid #333333;
+          padding-bottom: 3px;
+          margin-top: 0px;
+          margin-bottom: 8px;
+        }
+      </style>
+    </head>
+    <body>
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-bottom: 12px; border-bottom: 2px solid #333333; padding-bottom: 12px;">
+        <tr>
+          <td width="150" style="vertical-align: middle;">
+            <img src="${photoSrc}" width="130" height="130" style="border-radius: 50%;" />
+          </td>
+          <td style="vertical-align: middle; padding-left: 20px;">
+            <div style="font-family: Arial, sans-serif; font-size: 24pt; font-weight: bold; color: #111111; text-transform: uppercase; line-height: 1.1; margin-bottom: 3px;">${name}</div>
+            <div style="font-family: Arial, sans-serif; font-size: 13pt; font-weight: bold; color: #555555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">${role}</div>
+            <table border="0" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="font-family: Arial, sans-serif; font-size: 9pt; color: #333333; padding-right: 15px;">Phone: ${phone}</td>
+                <td style="font-family: Arial, sans-serif; font-size: 9pt; color: #333333; padding-right: 15px;">Email: ${email}</td>
+                <td style="font-family: Arial, sans-serif; font-size: 9pt; color: #333333;">Location: ${location}</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          <td width="200" style="vertical-align: top; border-right: 1.5px solid #333333; padding-right: 15px;">
+            <div style="margin-bottom: 15px;">
+              <h2>Education</h2>
+              ${educationHTML}
+            </div>
+            <div style="margin-bottom: 15px;">
+              <h2>Expertise</h2>
+              <ul style="font-family: Arial, sans-serif; font-size: 9pt; color: #333333; margin: 0; padding-left: 15px;">
+                ${skillsHTML}
+              </ul>
+            </div>
+            <div>
+              <h2>Software</h2>
+              <div style="margin-top: 4px;">
+                ${softwareHTML}
+              </div>
+            </div>
+          </td>
+
+          <td style="vertical-align: top; padding-left: 15px;">
+            <div style="margin-bottom: 15px;">
+              <h2>Profile</h2>
+              <p style="font-family: Arial, sans-serif; font-size: 9.5pt; line-height: 1.35; color: #333333; margin: 0;">
+                ${aboutText}
+              </p>
+            </div>
+            <div>
+              <h2>Experience</h2>
+              ${experienceHTML}
+            </div>
+          </td>
+        </tr>
+      </table>
+    </body>
+    </html>
+  `;
+
+  const blob = new Blob(['\ufeff' + wordHTML], { type: 'application/msword' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Liza_Kukreja_Resume.doc';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 </script>
 </body>
 </html>
