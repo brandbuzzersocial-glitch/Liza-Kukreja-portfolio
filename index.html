@@ -691,6 +691,36 @@ nav{
     font-weight: 600 !important;
     margin-bottom: 3px !important;
   }
+  
+  /* Print Only Footer Contact Details styling */
+  .print-contact-footer {
+    grid-column: 1 / span 2 !important;
+    grid-row: 3 !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 40px !important;
+    border-top: 1.5px solid #000000 !important;
+    padding-top: 12px !important;
+    margin-top: 15px !important;
+    margin-bottom: 5px !important;
+    page-break-inside: avoid !important;
+  }
+  
+  .print-contact-footer .footer-field {
+    font-size: 11px !important;
+    color: #000000 !important;
+    font-weight: 700 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 7px !important;
+  }
+  
+  .print-contact-footer .footer-field i {
+    color: #000000 !important;
+    font-size: 11px !important;
+  }
 }
 </style>
 </head>
@@ -719,22 +749,6 @@ nav{
       <div class="hero-badge"><i class="fa-solid fa-circle" style="font-size:5px"></i> &nbsp;Available for Projects</div>
       <h1 class="hero-name">Liza<br><strong>Kukreja</strong></h1>
       <p class="hero-role"><span class="screen-only">Apparel &amp; Garment Designer</span><span class="print-only">Fashion Designer</span></p>
-      
-      <!-- Print Only Contact Info (matches reference layout) -->
-      <div class="contact-chips print-only">
-        <a href="tel:9306323338" class="chip">
-          <i class="fa-solid fa-phone"></i>
-          <span>9306323338</span>
-        </a>
-        <a href="mailto:lizaworking501@gmail.com" class="chip">
-          <i class="fa-regular fa-envelope"></i>
-          <span>lizaworking501@gmail.com</span>
-        </a>
-        <div class="chip">
-          <i class="fa-solid fa-location-dot"></i>
-          <span>Jaipur</span>
-        </div>
-      </div>
     </div>
     <div class="hero-stats">
       <div class="hero-stat">
@@ -1078,6 +1092,22 @@ nav{
     </div>
   </div>
 </section>
+
+  <!-- Print Only Footer Contact Details -->
+  <div class="print-contact-footer print-only">
+    <div class="footer-field">
+      <i class="fa-solid fa-phone"></i>
+      <span>+91 93063 23338</span>
+    </div>
+    <div class="footer-field">
+      <i class="fa-regular fa-envelope"></i>
+      <span>lizaworking501@gmail.com</span>
+    </div>
+    <div class="footer-field">
+      <i class="fa-solid fa-location-dot"></i>
+      <span>Jaipur</span>
+    </div>
+  </div>
 </div>
 
 <!-- FOOTER -->
@@ -1303,13 +1333,6 @@ function exportHTMLToWord() {
           <td style="vertical-align: middle; padding-left: 20px;">
             <div style="font-family: Arial, sans-serif; font-size: 24pt; font-weight: bold; color: #111111; text-transform: uppercase; line-height: 1.1; margin-bottom: 3px;">${name}</div>
             <div style="font-family: Arial, sans-serif; font-size: 13pt; font-weight: bold; color: #555555; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px;">${role}</div>
-            <table border="0" cellpadding="0" cellspacing="0">
-              <tr>
-                <td style="font-family: Arial, sans-serif; font-size: 9pt; color: #333333; padding-right: 15px;">Phone: ${phone}</td>
-                <td style="font-family: Arial, sans-serif; font-size: 9pt; color: #333333; padding-right: 15px;">Email: ${email}</td>
-                <td style="font-family: Arial, sans-serif; font-size: 9pt; color: #333333;">Location: ${location}</td>
-              </tr>
-            </table>
           </td>
         </tr>
       </table>
@@ -1346,6 +1369,16 @@ function exportHTMLToWord() {
               <h2>Experience</h2>
               ${experienceHTML}
             </div>
+          </td>
+        </tr>
+      </table>
+
+      <table border="0" cellpadding="0" cellspacing="0" width="100%" style="margin-top: 20px; border-top: 1.5px solid #333333; padding-top: 10px;">
+        <tr>
+          <td align="center" style="font-family: Arial, sans-serif; font-size: 10pt; font-weight: bold; color: #000000;">
+            Phone: ${phone} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Email: ${email} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            Location: ${location}
           </td>
         </tr>
       </table>
